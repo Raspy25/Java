@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Fco Javier Blazquez Numeros Aleatorios</title>
+    
+ <style>
+    body { /* css del body */
+  font-family: monospace; /* tipo de letra monospace */
+  color: white; /* color de letra blanco */
+  background-color: orange; /* fondo de la pagina naranja */
+  font-size:18px; /* tamaño de la letra */
+  text-align:center; /* texto centrado */
+  }
+     head { 
+   font-size:18px; /* tamaño de la letra 18 */
+  text-align:center; /* taxto centrado */
+  color: white; /* color de la letra blanco */
+  }
+</style>
+
+<h1>Ejercicio de números aleatorios</h1>
+
+<script>
+function muestra() { /* esta funcion comprueba que el numero minimo sea mas pequeño que el maximo y devuelve error si no lo es */
+    var min = Number(document.getElementById("min").value);
+    var max = Number(document.getElementById("max").value);
+    
+    if ( min > max ) { 
+     document.getElementById("fallo").innerHTML="El minimo no puede ser mayor que el maximo";
+    }
+    else { /*  */
+    var numero = aleatorio(min,max);
+    document.getElementById("resultado").value = numero;
+    document.getElementById("fallo").value = "";
+    
+        muestraImagenes(numero); 
+        muestraSonido(numero);
+         }
+    }
+function aleatorio(min,max) { /* esta funcion saca un numero aleatorio comprendido entre el rango minimo y el maximo */
+  return Math.floor( (Math.random()* (max-min+1)) ) + min;
+}
+
+    function muestraImagenes(n) { /* esta funcion saca la imagen que corresponde al numero si esta dentro del rango sino coloca una por defecto */
+        var img = document.getElementById("imagen");
+        var numeros = ["cero", "uno","dos","tres","cuatro","cinco","seis","siete","ocho","nueve","diez"];
+            if ( n >= 0 && n <= 10 ) {
+                img.src="imagenes/" + numeros[n] + ".png";
+                img.alt= numeros[n];
+            } 
+            else {
+            img.src="imagenes/numeros.png";
+            img.alt="numeros";
+            }
+           }
+
+    function muestraSonido(n) { /* esta funcion coloca el sonido correspondiente al numero si da fallo avisa */
+         var sonido = document.getElementById("audio");
+         var numeros = ["cero", "uno","dos","tres","cuatro","cinco","seis","siete","ocho","nueve","diez"];
+            if (n>=0 && n<=10) {
+                sonido.src="sonidos/" + numeros[n] + ".ogg";
+            
+            } 
+            else {
+                sonido.src="sonidos/numeros.ogg";
+            }
+        }
+
+</script>
+
+</head>
+<body>
+<form>
+
+Número minimo:<input type="text" maxlength="4" size="4" id="min"><br><br>    
+Número maximo:<input type="text" maxlength="4" size="4" id="max"><br><br>
+
+<input onclick="muestra()" type="button" value="Muestra aleatorio" style='width:200px; height:30px'><br><br>
+
+Número aleatorio: <input maxLength=5 size=5 id="resultado"><br><br>
+
+<img id="imagen" src="imagenes/numeros.png" alt="NUMEROS" width="350" height="350"><br>
+<audio id="audio" src="sonidos/numero.ogg" controls></audio>
+<div id="fallo"></div>
+
+</form>
+</body>
+</html>
