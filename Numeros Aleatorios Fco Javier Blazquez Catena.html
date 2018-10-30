@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Fco Javier Blázquez Catena Numeros Aleatorios</title>
+<style>
+    body { /*Contiene el css del body*/
+        font-family: sans-serif; /*Tipo de letra sans serif*/ 
+        color: cornflowerblue; /*Color de letra cornflowerblue*/
+        text-align: center; /*Texto alineado centrado*/
+        font-size: 25px; /*Tamaño de letra 25pixeles*/
+        background: url("alea.jpg") no-repeat; /*Fondo de la pagina*/
+        background-size: cover; /*Hace que el fondo cubra toda la pagina*/
+    }
+    input { /*Contiene el css del input*/
+        width: 250px; /*Ancho*/
+        height: 40px; /*Largo*/
+    }
+</style>
+<script>
+function numeroAleatorio() { /*Funcion que saca el numero aleatorio entre 1 y 100 y 
+ejecuta un bucle mientras que el numero introducido no coincida con el aleatorio  y
+no el contador no pase de 10*/
+    var numAleatorio = Math.floor((Math.random()*(100-0))+1); /*Saca un número aleatorio entre 1 y 100*/
+    var contador = 1; /*Variable contador vale 1*/
+    var num = prompt("Intente adivinar un número del 1 al 100, tienes 10 intentos: "); /*Permite introducir un numero que se almacena en la variable num*/
+    
+    while( Number( num) !== numAleatorio && contador<10) { /*Se ejecuta mientras que el numeor introducido y el aleatorio no coincida y el contador supere 10*/
+        if (num<numAleatorio) { /*Si numero introducido es mayor que numero aleatorio se ejecuta*/
+            num = prompt("El numero aleatorio es mayor que: " + num); /*Indica que el numero aleatorio es mayor*/
+        }
+        else { /*Si numero introducido es menor que numero aleatorio se ejecuta*/
+            num = prompt("El numero aleatorio es menor que: " + num); /*Indica que el numero aleatorio es menor*/
+        }
+        contador++; /*Suma 1 al contador*/
+    } 
+    if (contador<=10) { /*Si contador vale 10 o más se ejecuta*/
+        alert("Has superado los 10 intentos"); /*Saca un Alert diciendo que se han superado los 10 intentos*/
+    }
+    else { /*Si contador no vale menos de 10 se ejecuta*/
+        alert("Has acertado antes de los 10 intentos"); /* */
+    }
+}
+</script>
+</head>
+<body> 
+<h1>Juego de adivinar un número</h1> 
+<input type="button" onclick="numeroAleatorio()" value="Jugar a adivinar el numero">
+</body>
+</html>
